@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia da Mulher 40+ - Longividade Ativa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fc;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        .top-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6B4C9A;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtext {
+            color: #4ECDC4;
+            font-size: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6B4C9A 0%, #7D5EA8 30%, #4ECDC4 100%);
+            padding: 80px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 22px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .trust-indicators {
+            display: flex;
+            gap: 40px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .trust-item {
+            color: white;
+        }
+
+        .trust-number {
+            font-size: 32px;
+            font-weight: 700;
+            display: block;
+        }
+
+        .trust-label {
+            font-size: 14px;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 30px 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .ebook-showcase {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .ebook-mockup {
+            width: 280px;
+            height: 360px;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(107, 76, 154, 0.4);
+            margin-bottom: 30px;
+            position: relative;
+            overflow: hidden;
+            background: #f0f0f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .ebook-mockup img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .download-section {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+        }
+
+        .download-section h2 {
+            font-size: 32px;
+            color: #1a202c;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .download-section p {
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            color: #334155;
+            margin-bottom: 10px;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: all 0.3s;
+            background: #f8f9fc;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #6B4C9A;
+            background: white;
+            box-shadow: 0 0 0 4px rgba(107, 76, 154, 0.1);
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #6B4C9A 0%, #8B5FAD 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 20px rgba(107, 76, 154, 0.3);
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(107, 76, 154, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .privacy-note {
+            margin-top: 20px;
+            font-size: 13px;
+            color: #94a3b8;
+            text-align: center;
+        }
+
+        .benefits-section {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+        .benefits-section h2 {
+            font-size: 32px;
+            margin-bottom: 30px;
+            color: #1a202c;
+            font-weight: 700;
+        }
+
+        .benefits-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .benefit-card {
+            display: flex;
+            gap: 15px;
+        }
+
+        .benefit-icon {
+            flex-shrink: 0;
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, #6B4C9A 0%, #8B5FAD 100%);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+        }
+
+        .benefit-content h3 {
+            font-size: 18px;
+            margin-bottom: 8px;
+            color: #1a202c;
+            font-weight: 600;
+        }
+
+        .benefit-content p {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .success-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .success-modal.show {
+            display: flex;
+        }
+
+        .success-content {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            max-width: 500px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: slideUp 0.4s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .success-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 40px;
+            color: white;
+        }
+
+        .success-content h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+            color: #1a202c;
+        }
+
+        .success-content p {
+            color: #64748b;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .close-btn {
+            padding: 14px 40px;
+            background: #f1f5f9;
+            color: #475569;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .close-btn:hover {
+            background: #e2e8f0;
+        }
+
+        .footer {
+            background: #1a202c;
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer p {
+            opacity: 0.8;
+            font-size: 14px;
+        }
+
+        @media (max-width: 968px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+            .hero h1 {
+                font-size: 36px;
+            }
+            .trust-indicators {
+                gap: 20px;
+            }
+            .benefits-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero {
+                padding: 50px 20px;
+            }
+            .hero h1 {
+                font-size: 28px;
+            }
+            .hero-subtitle {
+                font-size: 18px;
+            }
+            .main-content {
+                padding: 0 20px 60px;
+            }
+            .ebook-showcase,
+            .download-section,
+            .benefits-section {
+                padding: 30px 25px;
+            }
+            .success-content {
+                padding: 40px 30px;
+                margin: 20px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <div class="logo-text">LONGIVIDADE <span class="logo-subtext">ATIVA</span></div>
+        </div>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <span class="badge">✨ E-BOOK GRATUITO</span>
+            <h1>Guia da Mulher 40+: Como Ativar o Metabolismo</h1>
+            <p class="hero-subtitle">Longevidade Ativa: o método comprovado para turbinar seu metabolismo e emagrecer com saúde após os 40 anos
+            
+            <div class="trust-indicators">
+                <div class="trust-item">
+                    <span class="trust-number"></span>
+                    <span class="trust-label"></span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-number"></span>
+                    <span class="trust-label"></span>
+                </div>
+                <div class="trust-item">
+                    <span class="trust-number">100%</span>
+                    <span class="trust-label">Gratuito</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="content-grid">
+            <div class="ebook-showcase">
+                <div class="ebook-mockup">
+                    <img src="https://i.ibb.co/G33tRWLF/pasted-file-Kdje-FA-image-png.jpg" 
+                         alt="Capa do Ebook: O Guia da Mulher 40+"
+                         onerror="this.style.display='none'; this.parentElement.innerHTML='<div style=color:#666;text-align:center;padding:20px>Imagem do E-book<br>📚</div>'">
+                </div>
+                <h3 style="color: #1a202c; margin-bottom: 10px;">Material Exclusivo</h3>
+                <p style="color: #64748b; font-size: 14px;">Conteúdo desenvolvido por especialistas em saúde e longevidade ativa</p>
+            </div>
+
+            <div class="download-section">
+                <h2>Baixe Agora Gratuitamente</h2>
+                <p>Preencha os dados abaixo e receba o e-book instantaneamente no seu e-mail</p>
+                
+                <form id="downloadForm">
+                    <div class="form-group">
+                        <label for="name">Nome Completo</label>
+                        <input type="text" id="name" name="name" required placeholder="Digite seu nome completo">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Endereço de E-mail</label>
+                        <input type="email" id="email" name="email" required placeholder="seu@email.com">
+                    </div>
+                    
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span id="btnText">Baixar E-book Gratuito</span>
+                        <span id="btnLoading" style="display:none;">Enviando...</span>
+                    </button>
+                    
+                    <p class="privacy-note">🔒 Seus dados estão seguros. Não compartilhamos com terceiros.</p>
+                </form>
+                
+                <div id="errorMessage" style="display:none; margin-top:15px; padding:15px; background:#fee; border-radius:8px; color:#c33; text-align:center; font-size:14px;"></div>
+            </div>
+        </div>
+
+        <div class="benefits-section">
+            <h2>O que você vai aprender</h2>
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-fire"></i></div>
+                    <div class="benefit-content">
+                        <h3>Acelerar o Metabolismo</h3>
+                        <p>Técnicas comprovadas para reativar seu metabolismo após os 40 anos</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-dumbbell"></i></div>
+                    <div class="benefit-content">
+                        <h3>Treinos Específicos</h3>
+                        <p>Rotinas de exercícios adaptadas para queima eficiente de gordura</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-leaf"></i></div>
+                    <div class="benefit-content">
+                        <h3>Nutrição Inteligente</h3>
+                        <p>Estratégias alimentares para potencializar seus resultados</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                    <div class="benefit-content">
+                        <h3>Plano de Ação</h3>
+                        <p>Passo a passo prático para implementar as mudanças</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-lightbulb"></i></div>
+                    <div class="benefit-content">
+                        <h3>Dicas de Motivação</h3>
+                        <p>Como manter a consistência e alcançar seus objetivos</p>
+                    </div>
+                </div>
+                
+                <div class="benefit-card">
+                    <div class="benefit-icon"><i class="fas fa-clock"></i></div>
+                    <div class="benefit-content">
+                        <h3>Rotina Flexível</h3>
+                        <p>Adapte os treinos à sua agenda e estilo de vida</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="success-modal" id="successModal">
+        <div class="success-content">
+            <div class="success-icon">✓</div>
+            <h3>Sucesso!</h3>
+            <p>Seu e-book foi enviado para <strong id="userEmail"></strong></p>
+            <p style="font-size: 14px; color: #94a3b8;">Você será redirecionado para o material em instantes...</p>
+            <button class="close-btn" onclick="closeModal()">Entendi</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-content">
+            <p>© 2025 Longividade Ativa. Todos os direitos reservados.</p>
+            <p style="margin-top: 10px; font-size: 13px;">Transformando vidas através do movimento e da saúde</p>
+        </div>
+    </div>
+
+<script>
+    const form = document.getElementById('downloadForm');
+    const modal = document.getElementById('successModal');
+    const userEmailSpan = document.getElementById('userEmail');
+    const submitBtn = document.getElementById('submitBtn');
+    const btnText = document.getElementById('btnText');
+    const btnLoading = document.getElementById('btnLoading');
+    const errorMessage = document.getElementById('errorMessage');
+
+    // !!!!! IMPORTANTE: Substitua a URL abaixo pelo link de compartilhamento PÚBLICO do seu arquivo no Google Drive !!!!!
+    const GOOGLE_DRIVE_LINK = 'https://drive.google.com/file/d/1mReb7yh6YYwMKKA20YgqAbBF0NA_9JlK/view?usp=sharing';
+
+    form.addEventListener('submit', async function(e ) {
+        e.preventDefault();
+        
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+
+        // Mostrar loading
+        submitBtn.disabled = true;
+        btnText.style.display = 'none';
+        btnLoading.style.display = 'inline';
+        errorMessage.style.display = 'none';
+
+        try {
+            // --- MUDANÇA PRINCIPAL AQUI ---
+            // Agora, enviamos os dados para a nossa própria função segura, e não mais para o Brevo diretamente.
+            const response = await fetch('/.netlify/functions/subscribe', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    name: name,
+                    email: email,
+                }),
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                // Se a resposta não for OK, lançamos um erro com a mensagem vinda da nossa função
+                throw new Error(data.message || 'Ocorreu um erro no servidor.');
+            }
+            
+            // Se chegou aqui, deu tudo certo!
+            userEmailSpan.textContent = email;
+            modal.classList.add('show');
+            form.reset();
+
+            // Redirecionar para o Google Drive após o sucesso
+            if (GOOGLE_DRIVE_LINK) {
+                setTimeout(() => {
+                    window.location.href = GOOGLE_DRIVE_LINK;
+                }, 2500);
+            }
+
+        } catch (error) {
+            console.error('Erro:', error);
+            errorMessage.textContent = `⚠️ ${error.message || 'Houve um erro. Por favor, tente novamente.'}`;
+            errorMessage.style.display = 'block';
+        } finally {
+            // Restaurar botão
+            submitBtn.disabled = false;
+            btnText.style.display = 'inline';
+            btnLoading.style.display = 'none';
+        }
+    });
+
+    function closeModal() {
+        modal.classList.remove('show');
+    }
+
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            closeModal();
+        }
+    });
+</script>
+
+</body>
+</html>
+```
