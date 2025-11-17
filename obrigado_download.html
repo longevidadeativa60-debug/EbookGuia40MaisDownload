@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ebook Enviado! | Oferta Especial da Longevidade Ativa</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fc;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        .top-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6B4C9A;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtext {
+            color: #4ECDC4;
+            font-size: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6B4C9A 0%, #7D5EA8 30%, #4ECDC4 100%);
+            padding: 60px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 22px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 30px 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .confirmation-card {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .confirmation-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            font-size: 40px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .confirmation-card h2 {
+            font-size: 32px;
+            color: #1a202c;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .confirmation-card p {
+            color: #64748b;
+            font-size: 16px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .divider {
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #e2e8f0, transparent);
+            margin: 50px 0;
+        }
+
+        .offer-section {
+            background: white;
+            padding: 50px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+        .offer-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .offer-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF6B6B, #FF8E72);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 107, 107, 0.3);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .offer-header h2 {
+            font-size: 36px;
+            color: #1a202c;
+            margin-bottom: 15px;
+            font-weight: 800;
+            line-height: 1.2;
+        }
+
+        .offer-header p {
+            color: #64748b;
+            font-size: 18px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .offer-card {
+            background: linear-gradient(135deg, rgba(107, 76, 154, 0.05), rgba(78, 205, 196, 0.05));
+            border: 2px solid #6B4C9A;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 200px;
+            height: 200px;
+            background: radial-gradient(circle, rgba(78, 205, 196, 0.1), transparent);
+            border-radius: 50%;
+        }
+
+        .offer-card-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .offer-title {
+            font-size: 28px;
+            color: #1a202c;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .offer-description {
+            color: #334155;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .offer-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 24px;
+            height: 24px;
+            background: linear-gradient(135deg, #6B4C9A, #8B5FAD);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 14px;
+            font-weight: 700;
+            margin-top: 2px;
+        }
+
+        .feature-text {
+            color: #334155;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .timer-section {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E72);
+            border-radius: 16px;
+            padding: 30px;
+            margin-bottom: 30px;
+            color: white;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+        }
+
+        .timer-label {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            opacity: 0.95;
+            margin-bottom: 12px;
+        }
+
+        .timer-display {
+            font-size: 48px;
+            font-weight: 800;
+            font-family: 'Courier New', monospace;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+
+        .timer-warning {
+            font-size: 12px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        .price-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .price-original {
+            font-size: 24px;
+            color: #94a3b8;
+            text-decoration: line-through;
+            font-weight: 600;
+        }
+
+        .price-badge {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .discount-label {
+            background: linear-gradient(135deg, #FF6B6B, #FF8E72);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .price-current {
+            font-size: 56px;
+            color: #6B4C9A;
+            font-weight: 800;
+        }
+
+        .price-currency {
+            font-size: 28px;
+            vertical-align: super;
+        }
+
+        .price-period {
+            font-size: 16px;
+            color: #64748b;
+            font-weight: 500;
+        }
+
+        .buy-button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #6B4C9A 0%, #8B5FAD 100%);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 25px rgba(107, 76, 154, 0.4);
+            text-decoration: none;
+            display: inline-block;
+            width: 100%;
+        }
+
+        .buy-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(107, 76, 154, 0.5);
+        }
+
+        .buy-button:active {
+            transform: translateY(-1px);
+        }
+
+        .buy-button-subtitle {
+            display: block;
+            font-size: 12px;
+            font-weight: 500;
+            opacity: 0.95;
+            margin-top: 8px;
+            text-transform: capitalize;
+        }
+
+        .guarantee-section {
+            background: linear-gradient(135deg, rgba(76, 175, 80, 0.1), rgba(78, 205, 196, 0.1));
+            border-left: 4px solid #4ECDC4;
+            padding: 25px;
+            border-radius: 12px;
+            margin-top: 30px;
+        }
+
+        .guarantee-title {
+            font-size: 16px;
+            color: #1a202c;
+            font-weight: 700;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .guarantee-text {
+            color: #334155;
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            padding: 40px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #6B4C9A;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4ECDC4;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .offer-header h2 {
+                font-size: 28px;
+            }
+
+            .offer-card {
+                padding: 25px;
+            }
+
+            .offer-features {
+                grid-template-columns: 1fr;
+            }
+
+            .timer-display {
+                font-size: 36px;
+            }
+
+            .price-current {
+                font-size: 42px;
+            }
+
+            .price-original {
+                font-size: 20px;
+            }
+
+            .confirmation-card {
+                padding: 30px;
+            }
+
+            .offer-section {
+                padding: 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0 15px 40px;
+            }
+
+            .confirmation-card,
+            .offer-section {
+                padding: 20px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .offer-header h2 {
+                font-size: 24px;
+            }
+
+            .offer-title {
+                font-size: 22px;
+            }
+
+            .timer-display {
+                font-size: 32px;
+            }
+
+            .price-current {
+                font-size: 36px;
+            }
+
+            .price-section {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .price-original {
+                font-size: 18px;
+            }
+
+            .confirmation-icon {
+                width: 60px;
+                height: 60px;
+                font-size: 30px;
+            }
+
+            .footer-links {
+                gap: 15px;
+            }
+
+            .offer-card {
+                padding: 20px;
+            }
+
+            .offer-description {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <span class="logo-text">Longevidade Ativa</span>
+            <span class="logo-subtext">40+</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="badge">✓ Ebook Confirmado</div>
+            <h1>Seu Ebook está a Caminho do seu E-mail!</h1>
+            <p class="hero-subtitle">Parabéns pelo primeiro passo. O Guia será entregue em até 5 minutos. Verifique a caixa de SPAM!</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Confirmation Card -->
+        <div class="confirmation-card">
+            <div class="confirmation-icon">📧</div>
+            <h2>Ebook Enviado com Sucesso!</h2>
+            <p>Você receberá em breve um e-mail com o Guia Completo de Longevidade Ativa para Mulheres 40+. Caso não receba em até 5 minutos, verifique a pasta de SPAM ou PROMOÇÕES.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <!-- Offer Section -->
+        <div class="offer-section">
+            <div class="offer-header">
+                <div class="offer-badge">⚡ Oferta Exclusiva</div>
+                <h2>PARE! Antes de Abrir Seu Ebook, Veja Isso...</h2>
+                <p>Você acaba de receber a teoria, mas para ver a Longevidade Ativa em Ação, preparamos uma oferta SURPRESA e EXCLUSIVA para novos membros, disponível apenas nesta página.</p>
+            </div>
+
+            <!-- Offer Card -->
+            <div class="offer-card">
+                <div class="offer-card-content">
+                    <h3 class="offer-title">Seu Primeiro Treino Completo em Vídeo</h3>
+                    <p class="offer-description">
+                        Um vídeo prático e exclusivo mostrando o primeiro treino completo do programa Longevidade Ativa. Você verá exatamente como executar cada movimento, as variações para seu nível e como começar a sentir os resultados em menos de 10 minutos.
+                    </p>
+
+                    <!-- Features Grid -->
+                    <div class="offer-features">
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span class="feature-text">Vídeo em HD com instruções passo a passo</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span class="feature-text">Variações para iniciantes e avançadas</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span class="feature-text">Acesso imediato após a compra</span>
+                        </div>
+                        <div class="feature-item">
+                            <div class="feature-icon">✓</div>
+                            <span class="feature-text">Suporte por WhatsApp incluído</span>
+                        </div>
+                    </div>
+
+                    <!-- Timer Section -->
+                    <div class="timer-section">
+                        <div class="timer-label">⏰ Oferta Expira em:</div>
+                        <div class="timer-display" id="timer">10:00</div>
+                        <div class="timer-warning">Aproveite agora! Essa oferta é exclusiva para esta página.</div>
+                    </div>
+
+                    <!-- Price Section -->
+                    <div class="price-section">
+                        <span class="price-original">R$ 29,90</span>
+                        <div class="discount-label">-67% OFF</div>
+                        <div>
+                            <span class="price-current"><span class="price-currency">R$</span> 9,90</span>
+                        </div>
+                    </div>
+
+                    <!-- Buy Button -->
+                    <a href="#" id="buy-button" class="buy-button" target="_blank">
+                        Comprar Agora - Acesso Imediato
+                        <span class="buy-button-subtitle">Receba o vídeo em segundos</span>
+                    </a>
+
+                    <!-- Guarantee Section -->
+                    <div class="guarantee-section">
+                        <div class="guarantee-title">
+                            🛡️ 100% Seguro
+                        </div>
+                        <div class="guarantee-text">
+                            Compre com segurança via Mercado Pago. Se não gostar, devolvemos seu dinheiro em até 7 dias, sem perguntas. Sua satisfação é nossa prioridade.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#termos">Termos de Serviço</a>
+                <a href="#privacidade">Política de Privacidade</a>
+                <a href="#contato">Contato</a>
+            </div>
+            <p>&copy; 2024 Longevidade Ativa. Todos os direitos reservados.</p>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURAÇÕES GLOBAIS
+        // ============================================
+        const LINK_PAGAMENTO_MP = 'https://mpago.la/seu_link_9-90'; // Substitua com o link real do Mercado Pago
+        const TIMER_DURATION_MINUTES = 10; // Duração do timer em minutos
+
+        // ============================================
+        // FUNÇÕES DO TIMER
+        // ============================================
+
+        /**
+         * Inicia a contagem regressiva do timer
+         */
+        function initializeTimer() {
+            let remainingSeconds = TIMER_DURATION_MINUTES * 60;
+
+            function updateTimer() {
+                const minutes = Math.floor(remainingSeconds / 60);
+                const seconds = remainingSeconds % 60;
+
+                // Formatar com zeros à esquerda
+                const formattedTime = `${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
+                document.getElementById('timer').textContent = formattedTime;
+
+                // Mudar cor quando chegar perto do fim (últimos 2 minutos)
+                const timerElement = document.getElementById('timer');
+                if (remainingSeconds <= 120) {
+                    timerElement.parentElement.style.animation = 'pulse 0.5s infinite';
+                }
+
+                // Decrementar tempo
+                remainingSeconds--;
+
+                // Se o timer chegou a zero, parar
+                if (remainingSeconds < 0) {
+                    document.getElementById('timer').textContent = '00:00';
+                    document.getElementById('buy-button').disabled = true;
+                    document.getElementById('buy-button').style.opacity = '0.5';
+                    document.getElementById('buy-button').style.cursor = 'not-allowed';
+                    return;
+                }
+
+                // Atualizar a cada segundo
+                setTimeout(updateTimer, 1000);
+            }
+
+            // Iniciar o timer
+            updateTimer();
+        }
+
+        /**
+         * Configura o botão de compra com o link do Mercado Pago
+         */
+        function initializeBuyButton() {
+            const buyButton = document.getElementById('buy-button');
+            buyButton.href = LINK_PAGAMENTO_MP;
+        }
+
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeTimer();
+            initializeBuyButton();
+
+            // Log para debugging (remover em produção)
+            console.log('Página de agradecimento e oferta carregada');
+            console.log('Link de pagamento:', LINK_PAGAMENTO_MP);
+        });
+    </script>
+</body>
+</html>

@@ -638,12 +638,19 @@
             modal.classList.add('show');
             form.reset();
 
+ HEAD
+            // Redirecionar para a página de obrigado e oferta após o sucesso
+            setTimeout(() => {
+                window.location.href = 'obrigado_download.html?email=' + encodeURIComponent(email);
+            }, 2500);
+
             // Redirecionar para o Google Drive após o sucesso
             if (GOOGLE_DRIVE_LINK) {
                 setTimeout(() => {
                     window.location.href = GOOGLE_DRIVE_LINK;
                 }, 2500);
             }
+
 
         } catch (error) {
             console.error('Erro:', error);
