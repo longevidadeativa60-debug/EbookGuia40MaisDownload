@@ -3,7 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia da Mulher 40+ - Longividade Ativa</title>
+    <title>Guia da Mulher 40+ - Longevidade Ativa</title>
+    
+    
+    <script>
+
+    !function(f,b,e,v,n,t,s)
+
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+f
+    n.queue=[];t=b.createElement(e);t.async=!0;
+
+    t.src=v;s=b.getElementsByTagName(e)[0];
+
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+
+    'https://connect.facebook.net/en_US/fbevents.js');
+
+    fbq('init', '2057947164633959'); // <-- TROQUE AQUI PELO SEU PIXEL ID
+
+    fbq('track', 'PageView');
+
+    </script>
+
+    <noscript><img height="1" width="1" style="display:none"
+
+    src="https://www.facebook.com/tr?id=2057947164633959&ev=PageView&noscript=1"
+
+    /></noscript>
+    
+    
+    
+    
+    
     <style>
         * {
             margin: 0;
@@ -451,7 +487,7 @@
 <body>
     <div class="top-bar">
         <div class="top-bar-content">
-            <div class="logo-text">LONGIVIDADE <span class="logo-subtext">ATIVA</span></div>
+            <div class="logo-text">LONGEVIDADE <span class="logo-subtext">ATIVA</span></div>
         </div>
     </div>
 
@@ -583,7 +619,7 @@
 
     <div class="footer">
         <div class="footer-content">
-            <p>© 2025 Longividade Ativa. Todos os direitos reservados.</p>
+            <p>© 2025 Longevidade Ativa. Todos os direitos reservados.</p>
             <p style="margin-top: 10px; font-size: 13px;">Transformando vidas através do movimento e da saúde</p>
         </div>
     </div>
@@ -613,44 +649,26 @@
         errorMessage.style.display = 'none';
 
         try {
-            // --- MUDANÇA PRINCIPAL AQUI ---
-            // Agora, enviamos os dados para a nossa própria função segura, e não mais para o Brevo diretamente.
-            const response = await fetch('/.netlify/functions/subscribe', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    name: name,
-                    email: email,
-                }),
-            });
-
-            const data = await response.json();
-
-            if (!response.ok) {
-                // Se a resposta não for OK, lançamos um erro com a mensagem vinda da nossa função
-                throw new Error(data.message || 'Ocorreu um erro no servidor.');
-            }
+            // Simular envio bem-sucedido (sem dependência de servidor externo)
+            // Em produção, você pode integrar com um serviço de e-mail como Brevo, Mailchimp, etc.
+            // Por enquanto, apenas validamos e prosseguimos com o redirecionamento
             
+
+            // DISPARAR EVENTO DE LEAD PARA O PIXEL DA META (AGORA ESTÁ AQUI!)
+            if (typeof fbq === 'function') {
+                fbq('track', 'Lead'); 
+            }
+
+
             // Se chegou aqui, deu tudo certo!
             userEmailSpan.textContent = email;
             modal.classList.add('show');
             form.reset();
 
- HEAD
             // Redirecionar para a página de obrigado e oferta após o sucesso
             setTimeout(() => {
                 window.location.href = 'obrigado_download.html?email=' + encodeURIComponent(email);
             }, 2500);
-
-            // Redirecionar para o Google Drive após o sucesso
-            if (GOOGLE_DRIVE_LINK) {
-                setTimeout(() => {
-                    window.location.href = GOOGLE_DRIVE_LINK;
-                }, 2500);
-            }
-
 
         } catch (error) {
             console.error('Erro:', error);
@@ -677,4 +695,3 @@
 
 </body>
 </html>
-```

@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Compra Aprovada - Longevidade Ativa 40+</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: #f8f9fc;
+            color: #1a202c;
+            line-height: 1.6;
+        }
+
+        .top-bar {
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 15px 0;
+        }
+
+        .top-bar-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 30px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #6B4C9A;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-subtext {
+            color: #4ECDC4;
+            font-size: 20px;
+        }
+
+        .hero {
+            background: linear-gradient(135deg, #6B4C9A 0%, #7D5EA8 30%, #4ECDC4 100%);
+            padding: 60px 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="2" fill="white" opacity="0.1"/></svg>') repeat;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .success-badge {
+            display: inline-block;
+            background: rgba(76, 175, 80, 0.2);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 10px 24px;
+            border-radius: 50px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 20px;
+            border: 1px solid rgba(76, 175, 80, 0.4);
+        }
+
+        .hero h1 {
+            color: white;
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+            max-width: 800px;
+        }
+
+        .hero-subtitle {
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 22px;
+            font-weight: 300;
+            max-width: 700px;
+            margin-bottom: 30px;
+        }
+
+        .main-content {
+            max-width: 1200px;
+            margin: -50px auto 0;
+            padding: 0 30px 80px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .confirmation-card {
+            background: white;
+            padding: 60px;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+            margin-bottom: 40px;
+        }
+
+        .confirmation-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .success-icon {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #4CAF50, #66BB6A);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            font-size: 50px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
+        }
+
+        .confirmation-header h2 {
+            font-size: 36px;
+            color: #1a202c;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .confirmation-header p {
+            color: #64748b;
+            font-size: 18px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .next-steps-section {
+            background: linear-gradient(135deg, rgba(107, 76, 154, 0.05), rgba(78, 205, 196, 0.05));
+            padding: 40px;
+            border-radius: 16px;
+            border-left: 5px solid #6B4C9A;
+            margin-bottom: 40px;
+        }
+
+        .next-steps-title {
+            font-size: 24px;
+            color: #1a202c;
+            margin-bottom: 25px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .next-steps-title::before {
+            content: '📋';
+            font-size: 28px;
+        }
+
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            margin-bottom: 20px;
+            padding-left: 50px;
+            position: relative;
+            color: #334155;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #6B4C9A 0%, #8B5FAD 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 18px;
+        }
+
+        .steps-list li strong {
+            color: #1a202c;
+            font-weight: 600;
+        }
+
+        .whatsapp-button {
+            width: 100%;
+            padding: 20px;
+            background: linear-gradient(135deg, #25D366, #20BA58);
+            color: white;
+            border: none;
+            border-radius: 12px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 6px 25px rgba(37, 211, 102, 0.4);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 20px;
+            text-decoration: none;
+            display: inline-flex;
+            width: 100%;
+        }
+
+        .whatsapp-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(37, 211, 102, 0.5);
+        }
+
+        .whatsapp-button:active {
+            transform: translateY(-1px);
+        }
+
+        .whatsapp-button svg {
+            width: 24px;
+            height: 24px;
+            fill: white;
+        }
+
+        .transaction-details {
+            background: #f8f9fc;
+            padding: 30px;
+            border-radius: 12px;
+            margin-top: 40px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .transaction-details h3 {
+            font-size: 18px;
+            color: #1a202c;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .detail-label {
+            font-size: 12px;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .detail-value {
+            font-size: 16px;
+            color: #1a202c;
+            font-weight: 600;
+            word-break: break-all;
+        }
+
+        .email-notice {
+            background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(107, 76, 154, 0.05));
+            padding: 20px;
+            border-radius: 12px;
+            border-left: 4px solid #4ECDC4;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #334155;
+        }
+
+        .email-notice strong {
+            color: #1a202c;
+        }
+
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid #e2e8f0;
+            padding: 40px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+            color: #64748b;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: #6B4C9A;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #4ECDC4;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 32px;
+            }
+
+            .hero-subtitle {
+                font-size: 18px;
+            }
+
+            .confirmation-card {
+                padding: 30px;
+            }
+
+            .confirmation-header h2 {
+                font-size: 28px;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .next-steps-section {
+                padding: 25px;
+            }
+
+            .next-steps-title {
+                font-size: 20px;
+            }
+
+            .steps-list li {
+                font-size: 15px;
+                padding-left: 45px;
+            }
+
+            .steps-list li::before {
+                width: 35px;
+                height: 35px;
+                font-size: 16px;
+            }
+
+            .whatsapp-button {
+                padding: 16px;
+                font-size: 16px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .main-content {
+                padding: 0 15px 40px;
+            }
+
+            .confirmation-card {
+                padding: 20px;
+            }
+
+            .confirmation-header h2 {
+                font-size: 24px;
+            }
+
+            .hero {
+                padding: 40px 15px;
+            }
+
+            .hero h1 {
+                font-size: 28px;
+            }
+
+            .hero-subtitle {
+                font-size: 16px;
+            }
+
+            .success-icon {
+                width: 80px;
+                height: 80px;
+                font-size: 40px;
+            }
+
+            .next-steps-section {
+                padding: 20px;
+            }
+
+            .next-steps-title {
+                font-size: 18px;
+            }
+
+            .steps-list li {
+                font-size: 14px;
+                padding-left: 40px;
+                margin-bottom: 16px;
+            }
+
+            .steps-list li::before {
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .detail-item {
+                margin-bottom: 12px;
+            }
+
+            .footer-links {
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="top-bar-content">
+            <span class="logo-text">Longevidade Ativa</span>
+            <span class="logo-subtext">40+</span>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <div class="hero-content">
+            <div class="success-badge">✓ Pagamento Confirmado</div>
+            <h1>Compra Aprovada! Seu Acesso é Imediato.</h1>
+            <p class="hero-subtitle">Parabéns! O próximo e último passo é entrar no nosso Grupo VIP de Suporte. É por lá que liberamos o acesso ao seu material.</p>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="confirmation-card">
+            <div class="confirmation-header">
+                <div class="success-icon">✓</div>
+                <h2>Tudo Pronto para Começar!</h2>
+                <p>Você está a apenas um passo de acessar o conteúdo exclusivo do programa "Longevidade Ativa - Treinos 40+".</p>
+            </div>
+
+            <!-- Next Steps Section -->
+            <div class="next-steps-section">
+                <h3 class="next-steps-title">Próximos Passos</h3>
+                <ol class="steps-list">
+                    <li>
+                        <strong>Clique Abaixo:</strong> Clique no botão verde do WhatsApp para entrar no Grupo VIP de Suporte.
+                    </li>
+                    <li>
+                        <strong>Receba o Link:</strong> Assim que entrar no grupo, nossa equipe irá te enviar o Link Exclusivo de Acesso ao Vídeo e o seu Guia de Treino imediatamente.
+                    </li>
+                    <li>
+                        <strong>Atenção ao E-mail:</strong> O comprovante de pagamento também foi enviado para o seu e-mail (<span id="email-display">seu@email.com</span>).
+                    </li>
+                </ol>
+
+                <!-- WhatsApp Button -->
+                <a href="#" id="whatsapp-btn" class="whatsapp-button" target="_blank">
+                    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.946 1.23l-.356.214-3.71-.973.992 3.63-.235.374a9.86 9.86 0 001.5 4.827 9.84 9.84 0 004.812 3.196l.37.125 3.716.839-.951-3.645.267-.39a9.863 9.863 0 001.516-4.842 9.84 9.84 0 00-2.783-7.055 9.83 9.83 0 00-3.998-2.131zM12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"/>
+                    </svg>
+                    Acessar Grupo VIP e Receber Vídeo
+                </a>
+
+                <div class="email-notice">
+                    <strong>💡 Dica:</strong> Verifique sua pasta de spam/promoções se não encontrar o e-mail de confirmação. Adicione nosso e-mail aos contatos para não perder nenhuma mensagem importante.
+                </div>
+            </div>
+
+            <!-- Transaction Details -->
+            <div class="transaction-details">
+                <h3>Detalhes da Transação</h3>
+                <div class="detail-grid">
+                    <div class="detail-item">
+                        <span class="detail-label">Status do Pagamento</span>
+                        <span class="detail-value" id="payment-status">Aprovado</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">ID da Transação</span>
+                        <span class="detail-value" id="transaction-id">Carregando...</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Produto</span>
+                        <span class="detail-value">Longevidade Ativa - Treinos 40+</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Data da Compra</span>
+                        <span class="detail-value" id="purchase-date">Carregando...</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="#termos">Termos de Serviço</a>
+                <a href="#privacidade">Política de Privacidade</a>
+                <a href="#contato">Contato</a>
+            </div>
+            <p>&copy; 2024 Longevidade Ativa. Todos os direitos reservados.</p>
+        </div>
+    </div>
+
+    <script>
+        // ============================================
+        // CONFIGURAÇÕES GLOBAIS
+        // ============================================
+        const WHATSAPP_LINK = 'https://chat.whatsapp.com/ExemploGrupo'; // Substitua com o link real do grupo
+        const MERCADO_PAGO_RETURN_URL_PARAM = 'external_reference'; // Parâmetro esperado da URL do Mercado Pago
+
+        // ============================================
+        // FUNÇÕES AUXILIARES
+        // ============================================
+
+        /**
+         * Extrai parâmetros da URL
+         * @param {string} param - Nome do parâmetro
+         * @returns {string|null} - Valor do parâmetro ou null
+         */
+        function getUrlParameter(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        /**
+         * Extrai o ID da transação da URL do Mercado Pago
+         * Esperado: ?external_reference=ID_TRANSACAO ou ?payment_id=ID_TRANSACAO
+         * @returns {string|null} - ID da transação
+         */
+        function getTransactionId() {
+            // Tenta primeiro o parâmetro external_reference (padrão Mercado Pago)
+            let transactionId = getUrlParameter('external_reference');
+            
+            // Se não encontrar, tenta payment_id
+            if (!transactionId) {
+                transactionId = getUrlParameter('payment_id');
+            }
+
+            // Se ainda não encontrar, tenta collection_id
+            if (!transactionId) {
+                transactionId = getUrlParameter('collection_id');
+            }
+
+            return transactionId;
+        }
+
+        /**
+         * Extrai o e-mail da URL (se disponível)
+         * @returns {string|null} - E-mail do cliente
+         */
+        function getEmailFromUrl() {
+            return getUrlParameter('email');
+        }
+
+        /**
+         * Formata a data no padrão brasileiro
+         * @param {Date} date - Data a formatar
+         * @returns {string} - Data formatada
+         */
+        function formatDateBR(date) {
+            const options = { 
+                year: 'numeric', 
+                month: '2-digit', 
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            };
+            return date.toLocaleDateString('pt-BR', options);
+        }
+
+        /**
+         * Inicializa a página com dados da URL
+         */
+        function initializePage() {
+            // Obter ID da transação
+            const transactionId = getTransactionId();
+            if (transactionId) {
+                document.getElementById('transaction-id').textContent = transactionId;
+            } else {
+                document.getElementById('transaction-id').textContent = 'Não disponível';
+            }
+
+            // Obter e-mail
+            const email = getEmailFromUrl();
+            if (email) {
+                document.getElementById('email-display').textContent = email;
+            }
+
+            // Definir data da compra (data/hora atual)
+            const now = new Date();
+            document.getElementById('purchase-date').textContent = formatDateBR(now);
+
+            // Configurar botão do WhatsApp
+            const whatsappBtn = document.getElementById('whatsapp-btn');
+            whatsappBtn.href = WHATSAPP_LINK;
+
+
+
+
+if (transactionId) {
+                // 1. Google Ads Conversion Tracking (Pixel Google)
+                if (typeof gtag === 'function') {
+                    gtag('event', 'conversion', {
+                        'send_to': 'AW-CONVERSION_ID/AW-CONVERSION_LABEL', 
+                        'value': 9.90, // << SUBSTITUA PELO VALOR REAL DA COMPRA
+                        'currency': 'BRL',
+                        'transaction_id': transactionId
+                    });
+                    console.log('Evento de Conversão do Google Ads/Analytics disparado.');
+                }
+
+                // 2. Facebook Pixel Purchase Event
+                if (typeof fbq === 'function') {
+                    fbq('track', 'Purchase', {
+                        value: 9.90, // << SUBSTITUA PELO VALOR REAL DA COMPRA
+                        currency: 'BRL',
+                        content_ids: [transactionId], 
+                        content_type: 'product',
+                    });
+                    console.log('Evento de Compra (Purchase) do Facebook Pixel disparado.');
+                }
+            }
+
+
+
+
+            // Log para debugging (remover em produção)
+            console.log('Página de confirmação carregada');
+            console.log('ID da Transação:', transactionId);
+            console.log('E-mail:', email);
+        }
+
+        // ============================================
+        // INICIALIZAÇÃO
+        // ============================================
+        document.addEventListener('DOMContentLoaded', initializePage);
+    </script>
+</body>
+</html>
