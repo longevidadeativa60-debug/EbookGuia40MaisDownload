@@ -464,7 +464,112 @@
                 gap: 15px;
             }
         }
-    </style>
+
+
+
+
+
+
+        /*  meu  */
+
+
+
+
+
+
+
+/* Container Flutuante e Posicionamento */
+.whatsapp-float {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+}
+
+/* Estilização do Botão (o link <a>) - CLASSE ISOLADA */
+.whatsapp-float-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 60px;
+    height: 60px;
+    background-color: #25D366;
+    border-radius: 50%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease-in-out;
+}
+
+/* Efeito de hover */
+.whatsapp-float-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+}
+
+/* Estilização do Ícone SVG */
+.whatsapp-float-btn svg {
+    fill: white;
+    width: 32px;
+    height: 32px;
+}
+
+/* Tooltip (o balão "Fale conosco") */
+.whatsapp-tooltip {
+    position: absolute;
+    right: 70px;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: #555;
+    color: white;
+    padding: 8px 12px;
+    border-radius: 5px;
+    white-space: nowrap;
+    opacity: 0; /* Começa invisível */
+    visibility: hidden;
+    transition: opacity 0.3s, visibility 0.3s;
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+}
+
+/* Faz o tooltip aparecer ao passar o mouse */
+.whatsapp-float:hover .whatsapp-tooltip {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Badge (a notificação '1') */
+.notification-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: #FF0000;
+    color: white;
+    font-size: 12px;
+    padding: 2px 6px;
+    border-radius: 50%;
+    line-height: 1;
+    min-width: 15px;
+    text-align: center;
+    border: 2px solid white;
+    animation: pulse 2s infinite;
+}
+
+/* Animação para o badge */
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+}
+
+
+
+
+
+
+
+
+
+
+</style>
 </head>
 <body>
     <!-- Top Bar -->
@@ -509,11 +614,11 @@
                 </ol>
 
                 <!-- WhatsApp Button -->
-                <a href="#" id="whatsapp-btn" class="whatsapp-button" target="_blank">
+                <a href="https://wa.me/5543988001691?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" id="whatsapp-btn" class="whatsapp-button" target="_blank">
                     <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.946 1.23l-.356.214-3.71-.973.992 3.63-.235.374a9.86 9.86 0 001.5 4.827 9.84 9.84 0 004.812 3.196l.37.125 3.716.839-.951-3.645.267-.39a9.863 9.863 0 001.516-4.842 9.84 9.84 0 00-2.783-7.055 9.83 9.83 0 00-3.998-2.131zM12 0C5.383 0 0 5.383 0 12s5.383 12 12 12 12-5.383 12-12S18.617 0 12 0z"/>
                     </svg>
-                    Acessar Grupo VIP e Receber Vídeo
+                    Acessar Suporte Longevidade Ativa e Receber Vídeo
                 </a>
 
                 <div class="email-notice">
@@ -557,6 +662,23 @@
             <p>&copy; 2024 Longevidade Ativa. Todos os direitos reservados.</p>
         </div>
     </div>
+
+
+
+<div class="whatsapp-float">
+    <div class="whatsapp-tooltip">Fale conosco no WhatsApp!</div>
+    <a href="https://wa.me/5543988001691?text=Ol%C3%A1%2C%20gostaria%20de%20mais%20informa%C3%A7%C3%B5es" 
+       class="whatsapp-float-btn" 
+       target="_blank"
+       aria-label="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+            <path d="M16 0C7.163 0 0 7.163 0 16c0 2.828.737 5.482 2.028 7.782L.073 31.334l7.906-2.072A15.917 15.917 0 0016 32c8.837 0 16-7.163 16-16S24.837 0 16 0zm0 29.333c-2.545 0-4.99-.705-7.059-2.038l-.507-.301-5.235 1.373 1.395-5.107-.331-.526A13.276 13.276 0 012.667 16c0-7.364 5.97-13.333 13.333-13.333S29.333 8.636 29.333 16 23.364 29.333 16 29.333z"/>
+            <path d="M12.238 9.575c-.287-.64-.59-.653-.862-.663-.223-.009-.478-.008-.733-.008s-.67.095-1.021.476c-.35.38-1.338 1.308-1.338 3.191s1.37 3.7 1.56 3.955c.19.254 2.683 4.096 6.502 5.744 3.177 1.371 3.82 1.098 4.51 1.029.69-.07 2.228-.91 2.543-1.79.314-.88.314-1.634.22-1.79-.095-.159-.35-.254-.732-.444-.383-.19-2.262-1.116-2.613-1.243-.35-.127-.605-.19-.86.19-.255.382-1.275 1.244-1.562 1.498-.287.255-.574.287-.956.096-.382-.19-1.613-.595-3.072-1.896-1.135-.99-1.9-2.213-2.123-2.594-.222-.382-.024-.588.167-.778.172-.172.382-.445.573-.668.19-.222.254-.381.382-.635.127-.254.064-.477-.032-.668-.096-.19-.86-2.073-1.179-2.838z"/>
+        </svg>
+        <span class="notification-badge">1</span>
+    </a>
+</div>
+    
 
     <script>
         // ============================================
@@ -691,6 +813,29 @@ if (transactionId) {
         // INICIALIZAÇÃO
         // ============================================
         document.addEventListener('DOMContentLoaded', initializePage);
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+<script>
+    document.querySelector('.whatsapp-float-btn').addEventListener('click', function() {
+        const badge = document.querySelector('.notification-badge');
+        if (badge) {
+            badge.style.animation = 'none';
+            // Remove o badge depois de 300ms (para permitir que o CSS finalize)
+            setTimeout(() => badge.remove(), 300); 
+        }
+    });
+</script>
+
+    
     </script>
 </body>
 </html>
