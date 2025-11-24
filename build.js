@@ -16,7 +16,7 @@ if (!fs.existsSync(outdir)) {
 
 // Ler o conteúdo do index.html (que o usuário enviou como pasted_content.txt)
 // Vamos assumir que o arquivo principal é 'index.html'
-const htmlContent = fs.readFileSync('pasted_content.txt', 'utf-8');
+const htmlContent = fs.readFileSync('index.html', 'utf-8');
 
 // O esbuild não é ideal para substituir strings em HTML, mas podemos usá-lo para
 // processar um arquivo JS que contém a variável, ou fazer a substituição diretamente.
