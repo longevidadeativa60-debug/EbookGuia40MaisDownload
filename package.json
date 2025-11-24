@@ -1,7 +1,19 @@
 {
-  "name": "pagina-ebook-longividade-ativa",
+  "name": "ebook-landing-page",
   "version": "1.0.0",
+  "description": "Landing page for ebook download with Brevo integration.",
+  "main": "index.html",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "keywords": [
+    "brevo",
+    "cloudflare-pages",
+    "landing-page"
+  ],
+  "author": "",
+  "license": "ISC",
   "dependencies": {
-    "node-fetch": "^2.6.7"
+    "esbuild": "^0.20.2"
   }
 }
