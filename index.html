@@ -636,6 +636,59 @@
     // !!!!! IMPORTANTE: Substitua a URL abaixo pelo link de compartilhamento PÚBLICO do seu arquivo no Google Drive !!!!!
     const GOOGLE_DRIVE_LINK = 'https://drive.google.com/file/d/1mReb7yh6YYwMKKA20YgqAbBF0NA_9JlK/view?usp=sharing';
 
+    // --- CONFIGURAÇÃO BREVO (SENDINBLUE) ---
+    const BREVO_API_KEY = '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';
+    const BREVO_LIST_ID = 7;
+    const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
+
+    /**
+     * Envia os dados do contato para a API do Brevo.
+     * @param {string} name - Nome completo do contato.
+     * @param {string} email - Endereço de e-mail do contato.
+     * @returns {Promise<boolean>} - Retorna true se o envio for bem-sucedido (status 201 ou 204), false caso contrário.
+     */
+    async function sendToBrevo(name, email) {
+        const contactData = {
+            email: email,
+            attributes: {
+                // O Brevo usa atributos em MAIÚSCULAS por padrão para o nome
+                // Se o seu atributo de nome for diferente (ex: NOME), ajuste aqui.
+                FNAME: name.split(' ')[0] || name,
+                LNAME: name.split(' ').slice(1).join(' ') || ''
+            },
+            listIds: [BREVO_LIST_ID],
+            // Permite atualizar o contato se ele já existir
+            updateEnabled: true 
+        };
+
+        try {
+            const response = await fetch(BREVO_API_URL, {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                    'api-key': BREVO_API_KEY
+                },
+                body: JSON.stringify(contactData)
+            });
+
+            // O Brevo retorna 201 (Criado) ou 204 (Atualizado/Sucesso sem conteúdo)
+            if (response.status === 201 || response.status === 204) {
+                return true;
+            } else {
+                // Tenta ler a mensagem de erro do Brevo, se houver
+                const errorBody = await response.json().catch(() => ({ message: 'Erro desconhecido na API Brevo.' }));
+                console.error('Erro ao enviar para Brevo:', response.status, errorBody);
+                // Retorna false para indicar falha, mas não lança exceção para não quebrar o fluxo
+                return false; 
+            }
+        } catch (error) {
+            console.error('Erro de rede ao conectar com Brevo:', error);
+            // Retorna false em caso de erro de rede
+            return false; 
+        }
+    }
+
     form.addEventListener('submit', async function(e ) {
         e.preventDefault();
         
@@ -648,26 +701,30 @@
         btnLoading.style.display = 'inline';
         errorMessage.style.display = 'none';
 
-        try {
-            // Simular envio bem-sucedido (sem dependência de servidor externo)
-            // Em produção, você pode integrar com um serviço de e-mail como Brevo, Mailchimp, etc.
-            // Por enquanto, apenas validamos e prosseguimos com o redirecionamento
-            
-
-            // DISPARAR EVENTO DE LEAD PARA O PIXEL DA META (AGORA ESTÁ AQUI!)
-            if (typeof fbq === 'function') {
-                fbq('track', 'Lead'); 
-            }
-
-
-            // Se chegou aqui, deu tudo certo!
+	        try {
+	            // 1. Tentar enviar os dados para o Brevo
+	            const brevoSuccess = await sendToBrevo(name, email);
+	
+	            // 2. Verificar se o envio para o Brevo foi bem-sucedido
+	            if (!brevoSuccess) {
+	                // Se falhar, lançar um erro para ser capturado pelo bloco catch
+	                throw new Error('Falha ao registrar o contato no Brevo. Por favor, tente novamente.');
+	            }
+	
+	            // 3. DISPARAR EVENTO DE LEAD PARA O PIXEL DA META
+	            if (typeof fbq === 'function') {
+	                fbq('track', 'Lead'); 
+	            }
+	
+	
+	            // 4. Se chegou aqui, deu tudo certo! (Brevo e Pixel)
             userEmailSpan.textContent = email;
             modal.classList.add('show');
             form.reset();
 
             // Redirecionar para a página de obrigado e oferta após o sucesso
             setTimeout(() => {
-                window.location.href = 'obrigado_download.html?email=' + encodeURIComponent(email);
+                window.location.href = 'https://ebookguia40mais-download.pages.dev/obrigado_download?email=' + encodeURIComponent(email);
             }, 2500);
 
         } catch (error) {
