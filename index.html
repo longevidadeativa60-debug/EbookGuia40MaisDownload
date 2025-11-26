@@ -636,12 +636,11 @@
     // !!!!! IMPORTANTE: Substitua a URL abaixo pelo link de compartilhamento PÚBLICO do seu arquivo no Google Drive !!!!!
     const GOOGLE_DRIVE_LINK = 'https://drive.google.com/file/d/1mReb7yh6YYwMKKA20YgqAbBF0NA_9JlK/view?usp=sharing';
 
-    // --- CONFIGURAÇÃO BREVO (SENDINBLUE) ---
-    // !!!!! IMPORTANTE: SUBSTITUA ESTE PLACEHOLDER PELA SUA CHAVE DE API DO BREVO V3 !!!!!
-    // ATENÇÃO: EXPOR A CHAVE DE API NO FRONT-END É INSEGURO. CONSIDERE USAR UM BACK-END.
-    const BREVO_API_KEY = '###BREVO_API_KEY_PLACEHOLDER###';
-    const BREVO_LIST_ID = 7;
-    const BREVO_API_URL = 'https://api.brevo.com/v3/contacts';
+    // --- CONFIGURAÇÃO BREVO (SENDINBLUE) VIA CLOUDFLARE WORKER ---
+    // A chave de API agora está segura no Worker.
+    // O URL do Worker será injetado pelo script de build.
+    const BREVO_WORKER_URL = '###BREVO_WORKER_URL_PLACEHOLDER###';
+    const BREVO_LIST_ID = 7; // Mantido para referência, mas o Worker usa a variável de ambiente.
 
     /**
      * Envia os dados do contato para a API do Brevo.
@@ -650,44 +649,29 @@
      * @returns {Promise<boolean>} - Retorna true se o envio for bem-sucedido (status 201 ou 204), false caso contrário.
      */
     async function sendToBrevo(name, email) {
-        const contactData = {
-            email: email,
-            attributes: {
-                // O Brevo usa atributos em MAIÚSCULAS por padrão para o nome
-                // Se o seu atributo de nome for diferente (ex: NOME), ajuste aqui.
-                FNAME: name.split(' ')[0] || name,
-                LNAME: name.split(' ').slice(1).join(' ') || ''
-            },
-            listIds: [BREVO_LIST_ID],
-            // Permite atualizar o contato se ele já existir
-            updateEnabled: true 
-        };
-
+        // Chamada ao Cloudflare Worker
         try {
-            const response = await fetch(BREVO_API_URL, {
+            const workerResponse = await fetch(BREVO_WORKER_URL, {
                 method: 'POST',
                 headers: {
-                    'Accept': 'application/json',
-                    'Content-Type': 'application/json',
-                    'api-key': BREVO_API_KEY
+                    'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(contactData)
+                // Enviamos apenas os dados necessários para o Worker
+                body: JSON.stringify({ name: name, email: email, listId: BREVO_LIST_ID })
             });
 
-            // O Brevo retorna 201 (Criado) ou 204 (Atualizado/Sucesso sem conteúdo)
-            if (response.status === 201 || response.status === 204) {
+            if (workerResponse.ok) {
+                // Sucesso (o Worker retornou 200)
                 return true;
             } else {
-                // Tenta ler a mensagem de erro do Brevo, se houver
-                const errorBody = await response.json().catch(() => ({ message: 'Erro desconhecido na API Brevo.' }));
-                console.error('Erro ao enviar para Brevo:', response.status, errorBody);
-                // Retorna false para indicar falha, mas não lança exceção para não quebrar o fluxo
-                return false; 
+                // Erro do Worker (o Worker retornou um status de erro)
+                const errorBody = await workerResponse.json().catch(() => ({ message: 'Erro desconhecido do Worker.' }));
+                console.error('Erro ao enviar para Brevo (via Worker):', workerResponse.status, errorBody);
+                return false;
             }
         } catch (error) {
-            console.error('Erro de rede ao conectar com Brevo:', error);
-            // Retorna false em caso de erro de rede
-            return false; 
+            console.error('Erro de rede ao conectar com o Worker:', error);
+            return false;
         }
     }
 
