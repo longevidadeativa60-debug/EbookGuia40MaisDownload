@@ -528,26 +528,14 @@
 
             <div class="download-section">
                 <h2>Baixe Agora Gratuitamente</h2>
-                <p>Preencha os dados abaixo e receba o e-book instantaneamente no seu e-mail</p>
+	            <p>Clique no botão abaixo para acessar o e-book instantaneamente.</p>
                 
-                <form id="downloadForm">
-                    <div class="form-group">
-                        <label for="name">Nome Completo</label>
-                        <input type="text" id="name" name="name" required placeholder="Digite seu nome completo">
-                    </div>
-                    
-                    <div class="form-group">
-                        <label for="email">Endereço de E-mail</label>
-                        <input type="email" id="email" name="email" required placeholder="seu@email.com">
-                    </div>
-                    
-                    <button type="submit" class="submit-btn" id="submitBtn">
-                        <span id="btnText">Baixar E-book Gratuito</span>
-                        <span id="btnLoading" style="display:none;">Enviando...</span>
+                <div id="downloadSectionContent">
+                    <button class="submit-btn" id="directDownloadBtn">
+                        Baixar E-book Gratuito
                     </button>
-                    
-                    <p class="privacy-note">🔒 Seus dados estão seguros. Não compartilhamos com terceiros.</p>
-                </form>
+                    <p class="privacy-note">Clique no botão para ser direcionado à página de download.</p>
+                </div>
                 
                 <div id="errorMessage" style="display:none; margin-top:15px; padding:15px; background:#fee; border-radius:8px; color:#c33; text-align:center; font-size:14px;"></div>
             </div>
@@ -611,8 +599,7 @@
         <div class="success-content">
             <div class="success-icon">✓</div>
             <h3>Sucesso!</h3>
-            <p>Seu e-book foi enviado para <strong id="userEmail"></strong></p>
-            <p style="font-size: 14px; color: #94a3b8;">Você será redirecionado para o material em instantes...</p>
+	            <p>Você será direcionado à página de download.</p>
             <button class="close-btn" onclick="closeModal()">Entendi</button>
         </div>
     </div>
@@ -625,104 +612,22 @@
     </div>
 
 <script>
-    const form = document.getElementById('downloadForm');
+    const directDownloadBtn = document.getElementById('directDownloadBtn');
     const modal = document.getElementById('successModal');
-    const userEmailSpan = document.getElementById('userEmail');
-    const submitBtn = document.getElementById('submitBtn');
-    const btnText = document.getElementById('btnText');
-    const btnLoading = document.getElementById('btnLoading');
     const errorMessage = document.getElementById('errorMessage');
 
     // !!!!! IMPORTANTE: Substitua a URL abaixo pelo link de compartilhamento PÚBLICO do seu arquivo no Google Drive !!!!!
-    const GOOGLE_DRIVE_LINK = 'https://drive.google.com/file/d/1mReb7yh6YYwMKKA20YgqAbBF0NA_9JlK/view?usp=sharing';
+    // URL de redirecionamento final para o arquivo local na mesma pasta
+    const DOWNLOAD_REDIRECT_LINK = 'obrigado_download.html';
 
-    // --- CONFIGURAÇÃO BREVO (SENDINBLUE) VIA CLOUDFLARE WORKER ---
-    // A chave de API agora está segura no Worker.
-    // O URL do Worker será injetado pelo script de build.
-    const BREVO_WORKER_URL = '###BREVO_WORKER_URL_PLACEHOLDER###';
-    const BREVO_LIST_ID = 7; // Mantido para referência, mas o Worker usa a variável de ambiente.
+    directDownloadBtn.addEventListener('click', function() {
+        // 1. Exibir o modal de sucesso com a mensagem
+        modal.classList.add('show');
 
-    /**
-     * Envia os dados do contato para a API do Brevo.
-     * @param {string} name - Nome completo do contato.
-     * @param {string} email - Endereço de e-mail do contato.
-     * @returns {Promise<boolean>} - Retorna true se o envio for bem-sucedido (status 201 ou 204), false caso contrário.
-     */
-    async function sendToBrevo(name, email) {
-        // Chamada ao Cloudflare Worker
-        try {
-            const workerResponse = await fetch(BREVO_WORKER_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                // Enviamos apenas os dados necessários para o Worker
-                body: JSON.stringify({ name: name, email: email, listId: BREVO_LIST_ID })
-            });
-
-            if (workerResponse.ok) {
-                // Sucesso (o Worker retornou 200)
-                return true;
-            } else {
-                // Erro do Worker (o Worker retornou um status de erro)
-                const errorBody = await workerResponse.json().catch(() => ({ message: 'Erro desconhecido do Worker.' }));
-                console.error('Erro ao enviar para Brevo (via Worker):', workerResponse.status, errorBody);
-                return false;
-            }
-        } catch (error) {
-            console.error('Erro de rede ao conectar com o Worker:', error);
-            return false;
-        }
-    }
-
-    form.addEventListener('submit', async function(e ) {
-        e.preventDefault();
-        
-        const name = document.getElementById('name').value;
-        const email = document.getElementById('email').value;
-
-        // Mostrar loading
-        submitBtn.disabled = true;
-        btnText.style.display = 'none';
-        btnLoading.style.display = 'inline';
-        errorMessage.style.display = 'none';
-
-	        try {
-	            // 1. Tentar enviar os dados para o Brevo
-	            const brevoSuccess = await sendToBrevo(name, email);
-	
-	            // 2. Verificar se o envio para o Brevo foi bem-sucedido
-	            if (!brevoSuccess) {
-	                // Se falhar, lançar um erro para ser capturado pelo bloco catch
-	                throw new Error('Falha ao registrar o contato no Brevo. Por favor, tente novamente.');
-	            }
-	
-	            // 3. DISPARAR EVENTO DE LEAD PARA O PIXEL DA META
-	            if (typeof fbq === 'function') {
-	                fbq('track', 'Lead'); 
-	            }
-	
-	
-	            // 4. Se chegou aqui, deu tudo certo! (Brevo e Pixel)
-            userEmailSpan.textContent = email;
-            modal.classList.add('show');
-            form.reset();
-
-            // Redirecionar para a página de obrigado e oferta após o sucesso
-            setTimeout(() => {
-                window.location.href = 'https://ebookguia40mais-download.pages.dev/obrigado_download?email=' + encodeURIComponent(email);
-            }, 2500);
-
-        } catch (error) {
-            console.error('Erro:', error);
-            errorMessage.textContent = `⚠️ ${error.message || 'Houve um erro. Por favor, tente novamente.'}`;
-            errorMessage.style.display = 'block';
-        } finally {
-            // Restaurar botão
-            submitBtn.disabled = false;
-            btnText.style.display = 'inline';
-            btnLoading.style.display = 'none';
-        }
+        // 2. Redirecionar para o link de download após 2.5 segundos
+        setTimeout(() => {
+            window.location.href = DOWNLOAD_REDIRECT_LINK;
+        }, 2500);
     });
 
     function closeModal() {
