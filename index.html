@@ -624,10 +624,8 @@
         // 1. Exibir o modal de sucesso com a mensagem
         modal.classList.add('show');
 
-        // 2. Redirecionar para o link de download após 2.5 segundos
-        setTimeout(() => {
-            window.location.href = DOWNLOAD_REDIRECT_LINK;
-        }, 2500);
+        // 2. Redirecionar para o link de download imediatamente
+        window.location.href = DOWNLOAD_REDIRECT_LINK;
     });
 
     function closeModal() {
